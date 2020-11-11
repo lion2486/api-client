@@ -51,7 +51,7 @@ class Request
         if ($httpCode === 200) {
             if (!empty($response)) {
                 if($plain) { 
-                    return $response;
+                    return [$response];
                 }
                 $json = json_decode($response, true);
 
