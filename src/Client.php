@@ -34,11 +34,11 @@ class Client
         }
     }
 
-    public function request(string $method, string $path, array $data = [], array $headers = []): array
+    public function request(string $method, string $path, array $data = [], array $headers = [], bool $plain = false): array
     {
         $url = "{$this->endpoint}/$path";
         $this->request = new Request();
-        $response = $this->request->do($method, $url, $data, $headers);
+        $response = $this->request->do($method, $url, $data, $headers, $plain);
 
         return $response;
     }
