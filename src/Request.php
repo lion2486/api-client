@@ -15,9 +15,10 @@ class Request
      * @param string $url
      * @param array  $data
      * @param array  $headers
+     * @param bool   $plain - If plain response is requested.
      * @return array
      */
-    public function do(string $method, string $url, array $data = [], array $headers = []): ?array
+    public function do(string $method, string $url, array $data = [], array $headers = [], bool $plain = false): ?array
     {
         $method = strtoupper($method);
 
@@ -49,6 +50,9 @@ class Request
 
         if ($httpCode === 200) {
             if (!empty($response)) {
+                if($plain) { 
+                    return $response;
+                }
                 $json = json_decode($response, true);
 
                 if (!is_array($json)) {
